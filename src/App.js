@@ -2,9 +2,11 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TemporaryDrawer from './components/TemporaryDrawer';
-import Registration from './components/Registration';
 import Login from './components/Login';
 import Search from './components/Search';
+import AdminRegistration from './components/AdminRegistration';
+import SnakeCatcherRegistation from './components/SnakeCatcherRegistration';
+import PendingApprovals from './components/PendingApprovals';
 
 
 
@@ -14,9 +16,11 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route exact path="/snakeapp" element={<TemporaryDrawer />} />
-          <Route exact path="/registration" element={<Registration />} />
+          <Route exact path="/adminRegistration" element={<AdminRegistration />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/search" element={<Search />} />
+          <Route exact path="/snakeCatcherRegistation" element={<SnakeCatcherRegistation />} />
+          <Route exact path="/PendingApprovals" element={<PendingApprovals/>}/>
 
 
         </Routes>
