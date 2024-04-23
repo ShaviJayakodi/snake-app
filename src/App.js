@@ -7,6 +7,8 @@ import Search from './components/Search';
 import AdminRegistration from './components/AdminRegistration';
 import SnakeCatcherRegistation from './components/SnakeCatcherRegistration';
 import PendingApprovals from './components/PendingApprovals';
+import ChangePassword from './components/ChangePassword';
+import Home from './components/Home';
 
 
 
@@ -21,6 +23,8 @@ function App() {
           <Route exact path="/search" element={<Search />} />
           <Route exact path="/snakeCatcherRegistation" element={<SnakeCatcherRegistation />} />
           <Route exact path="/PendingApprovals" element={<PendingApprovals/>}/>
+          <Route exact path="/ChangePassword" element={<ChangePassword/>}/>
+          <Route exact path="/home" element={<Home/>}/>
 
 
         </Routes>
