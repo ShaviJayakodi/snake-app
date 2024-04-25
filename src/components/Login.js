@@ -3,6 +3,7 @@ import { TextField, Typography, Container, Grid, Button, InputAdornment, IconBut
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -47,12 +48,17 @@ function Login() {
           navigate('/home');
         }
       } else {
-        console.log('false');
+        Swal.fire({
+          icon: "error",
+          title: "Incorrect E-mail or Password.!"
+        });
       }
       // Handle successful login response
     } catch (error) {
-      console.error('Error logging in:', error);
-      // Handle login error
+      Swal.fire({
+        icon: "error",
+        title: "Incorrect E-mail or Password.!"
+      });
     }
   };
   return (

@@ -9,6 +9,7 @@ import SnakeCatcherRegistation from './components/SnakeCatcherRegistration';
 import PendingApprovals from './components/PendingApprovals';
 import ChangePassword from './components/ChangePassword';
 import Home from './components/Home';
+import SnakeIdentificationPage from './components/SnakeIdentificationPage';
 
 
 
@@ -24,7 +25,8 @@ function App() {
           <Route exact path="/snakeCatcherRegistation" element={<SnakeCatcherRegistation />} />
           <Route exact path="/PendingApprovals" element={<PendingApprovals/>}/>
           <Route exact path="/ChangePassword" element={<ChangePassword/>}/>
-          <Route exact path="/home" element={<Home/>}/>
+          <Route exact path="/home" element={<Home/>}/> 
+          <Route exact path="/snakeIdentification" element={<SnakeIdentificationPage/>}/>
 
 
         </Routes>
