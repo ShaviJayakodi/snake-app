@@ -26,7 +26,7 @@ export default function TemporaryDrawer() {
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Home', 'Admin Registrastion', 'Snake Catcher Registration', 'Snake Identify'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -42,31 +42,29 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-    <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="static">
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
-        >
-          <MenuIcon onClick={toggleDrawer(true)} />
-          
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+              onClick={toggleDrawer(true)} // Move onClick here
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Snake App
+            </Typography>
+              <Button color="inherit" component={Link} to="/login">Login</Button>    
+          </Toolbar>
+        </AppBar>
+      </Box>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          News
-        </Typography>
-        <Button color="inherit" LinkComponent={Link} to="/registration">Register</Button>
-        <Button color="inherit" LinkComponent={Link} to="/login">Login</Button>    
-      </Toolbar>
-    </AppBar>
-  </Box>
-      
     </div>
   );
 }

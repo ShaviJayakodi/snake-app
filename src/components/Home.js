@@ -1,13 +1,89 @@
-import React from 'react'
-import TemporaryDrawer from './TemporaryDrawer'
+import React, { useEffect, useRef } from 'react';
+import { Container, Typography, Button, useMediaQuery, useTheme } from '@mui/material';
+import { Zoom } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
+import TemporaryDrawer from './TemporaryDrawer';
 
-function Home() {
+const spanStyle = {
+  padding: '20px',
+  background: '#efefef',
+  color: '#000000'
+};
+
+const divStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundSize: 'cover',
+  height: '400px'
+};
+
+const images = [
+  'https://i.pinimg.com/236x/ee/3e/9d/ee3e9db881e4fbdde1e5cd3568b7aaa1.jpg',
+  'https://i.pinimg.com/564x/ca/2c/0d/ca2c0d36865edf52ba59286fe8c5eddc.jpg',
+];
+
+const HomePage = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const zoomRef = useRef(null);
+  const sliderHeight = isMobile ? '30vh' : '60vh'; // Set the slider height based on screen size
+
+  useEffect(() => {
+    // Ensure that the Zoom component is properly unmounted
+    return () => {
+      zoomRef.current = null;
+    };
+  }, []);
+
+  const textStyles = {
+    color: '#707B7C', 
+    fontFamily: 'Poppins', 
+    fontSize: '16px', 
+  };
+  const textStylesHead = {
+    color: '#707B7C', 
+    fontFamily: 'Poppins', 
+    fontSize: '20px', 
+  };
+
   return (
-    <div>
+    <div style={{ minHeight: '100vh', paddingBottom: '50px', boxSizing: 'border-box', position: 'relative' }}>
       <TemporaryDrawer/>
-      <h1>This is Home Page</h1>
+      <Typography variant="body1" align="center" paragraph  style={textStylesHead}>
+        <h2>
+          Save the Lives of Snakes & Be Safe from Them. 
+        </h2>
+      </Typography>
+      <div style={{ textAlign: 'center', borderRadius:5}}>
+        <Zoom scale={0.4} ref={zoomRef}>
+          {images.map((each, index) => (
+            <img key={index} style={{ width: "60%", height: sliderHeight }} src={each} />
+          ))}
+        </Zoom>
+      </div>
+      <Typography variant='body1' align='center' paragraph style={textStyles}>
+        <h2>
+          Vision
+        </h2>
+        "To create a world where snakes are protected, ensuring their survival and our safety."
+      </Typography>
+      <Typography variant='body1' align='center' paragraph style={textStyles}>
+        <h2>
+          Mission
+        </h2>
+        Our mission is to educate communities about the <br/>
+        importance of snakes in the ecosystem, promote coexistence through safe practices,<br/>
+         and provide humane solutions for snake-human conflicts. <br/>
+         By fostering understanding and respect, we strive to save the lives of snakes and <br/>
+         protect human lives from unnecessary harm.
+      </Typography>
+      <Button variant="contained" color="primary" size="large" fullWidth>
+        Get Started
+      </Button>
+      
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default HomePage;
