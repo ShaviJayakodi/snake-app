@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import TemporaryDrawer from './components/TemporaryDrawer';
 import Login from './components/Login';
 import Search from './components/Search';
 import AdminRegistration from './components/AdminRegistration';
@@ -24,8 +23,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/search" element={<Search />} />
         <Route path="/snakeCatcherRegistration" element={<SnakeCatcherRegistration />} />
-        <Route path="/PendingApprovals" element={<PendingApprovals />} />
-        <Route path="/ChangePassword" element={<ChangePassword />} />
+        <Route path="/pendingApprovals" element={<PendingApprovals />} />
+        <Route path="/changePassword" element={<ChangePassword />} />
       </Routes>
       <Footer />
     </BrowserRouter>

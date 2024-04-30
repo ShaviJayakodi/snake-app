@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Container, Typography, Button, useMediaQuery, useTheme } from '@mui/material';
+import { Typography, Button, useMediaQuery, useTheme } from '@mui/material';
 import { Zoom } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import TemporaryDrawer from './TemporaryDrawer';
@@ -19,8 +19,8 @@ const divStyle = {
 };
 
 const images = [
-  'https://i.pinimg.com/236x/ee/3e/9d/ee3e9db881e4fbdde1e5cd3568b7aaa1.jpg',
-  'https://i.pinimg.com/564x/ca/2c/0d/ca2c0d36865edf52ba59286fe8c5eddc.jpg',
+  'https://images.pexels.com/photos/80474/grass-snake-snake-serpentes-natrix-80474.jpeg?auto=compress&cs=tinysrgb&w=600',
+  'https://images.pexels.com/photos/162347/snake-young-animal-cute-slim-162347.jpeg?auto=compress&cs=tinysrgb&w=600',
 ];
 
 const HomePage = () => {

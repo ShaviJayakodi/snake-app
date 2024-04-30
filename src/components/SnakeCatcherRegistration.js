@@ -16,6 +16,12 @@ function Registration() {
     contactNo :''
   });
 
+   const cities = [
+    'Ambalangoda', 'Ampara', 'Anuradhapura', 'Bandarawela', 'Batticaloa', 'Colombo', 'Dambulla', 'Galle', 'Hambantota',
+    'Haputale', 'Horana', 'Jaffna', 'Kalutara', 'Kalmunai', 'Kandy', 'Kegalle', 'Kurunegala', 'Mannar', 'Matara',
+    'Negombo', 'Polonnaruwa', 'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
+  ].sort();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -163,15 +169,23 @@ function Registration() {
             />
           </Grid>
           <Grid item xs={6}>
-            <TextField
-              label="City"
-              name="city"
-              value={formData.city}
-              onChange={handleChange}
-              fullWidth
-              margin="none"
-            />
-          </Grid>
+          <TextField
+            select
+            label="City"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            fullWidth
+            margin="none"
+          >
+            {cities.map((city) => (
+              <MenuItem key={city} value={city}>
+                {city}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+
           <Grid item xs={6}>
             <TextField
               label="Postal Code"
