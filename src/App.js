@@ -10,6 +10,8 @@ import Home from './components/Home';
 import SnakeIdentificationPage from './components/SnakeIdentificationPage';
 import Footer from './components/Footer';
 import SearchSnakeCatcher from './components/SearchSnakeCatcher';
+import UpdateSnakeCatcher from './components/UpdateSnakeCatcher';
+import UpdateAdmin from './components/UpdateAdmin';
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
         <Route path="/snakeCatcherRegistration" element={<SnakeCatcherRegistration />} />
         <Route path="/pendingApprovals" element={<PendingApprovals />} />
         <Route path="/changePassword" element={<ChangePassword />} />
+        <Route path="/updateSnakeCatcher" element={<UpdateSnakeCatcher />} />
+        <Route path="/updateAdmin" element={<UpdateAdmin />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>
