@@ -13,6 +13,9 @@ import { Link, Navigate } from 'react-router-dom';
 import { AccountCircle, Menu as MenuIcon, Mail as MailIcon, MoveToInbox as InboxIcon } from '@mui/icons-material';
 import { MenuItem, Toolbar, Menu, AppBar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import RememberMeIcon from '@mui/icons-material/RememberMe';
 
 export default function TemporaryDrawer() {
   const navigate = useNavigate();
@@ -50,22 +53,47 @@ export default function TemporaryDrawer() {
   }
   
 
+  // const DrawerList = (
+  //   <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+  //     <List>
+  //       {['Home', 'Admin Registration', 'Snake Catcher Registration', 'Snake Identify'].map((text, index) => (
+  //         <ListItem key={text} disablePadding>
+  //           <ListItemButton component={Link} to={`/${text.toLowerCase().replace(' ', '-')}`}>
+  //             <ListItemIcon>
+  //               {index === 2 ? <InboxIcon /> : <MailIcon />}
+  //             </ListItemIcon>
+  //             <ListItemText primary={text} />
+  //           </ListItemButton>
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //   </Box>
+  // );
+
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {['Home', 'Admin Registration', 'Snake Catcher Registration', 'Snake Identify'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton component={Link} to={`/${text.toLowerCase().replace(' ', '-')}`}>
-              <ListItemIcon>
-                {index === 2 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+        {[
+          { text: 'Home', link: '/home', icon: <HomeIcon /> },
+          { text: 'Admin Registration', link: '/adminRegistration', icon: <AdminPanelSettingsIcon /> },
+          { text: 'Snake Catcher Registration', link: '/snakeCatcherRegistration', icon: <MailIcon /> },
+          { text: 'Snake Identify', link: '/snakeIdentification', icon: <RememberMeIcon /> }
+        ].map((item) => (
+          <ListItem key={item.text} disablePadding>
+            <ListItemButton component={Link} to={item.link}>
+              <ListItemIcon>{item.icon}</ListItemIcon> {/* Add the icon here */}
+              <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
     </Box>
   );
+  
+  
+
+
+
 
   return (
     <div>
