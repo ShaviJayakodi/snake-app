@@ -9,16 +9,15 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { Link, Navigate } from 'react-router-dom';
-import { AccountCircle, Menu as MenuIcon, Mail as MailIcon, MoveToInbox as InboxIcon } from '@mui/icons-material';
-import { MenuItem, Toolbar, Menu, AppBar } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { AccountCircle, Menu as MenuIcon, Mail as MailIcon, MoveToInbox as InboxIcon, Logout as LogoutIcon } from '@mui/icons-material';
+import { MenuItem, Toolbar, Menu, AppBar, Divider } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import RememberMeIcon from '@mui/icons-material/RememberMe';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function TemporaryDrawer() {
-  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [user, setUser] = React.useState(null);
 
@@ -43,32 +42,14 @@ export default function TemporaryDrawer() {
     if (storedUser) {
       const logedUserType = JSON.parse(storedUser).userType;
       if(logedUserType==='SNAKE_CATCHER'){
-        navigate('/updateSnakeCatcher');
+        // Use `navigate` from `react-router-dom` if needed
       } else if (logedUserType==='ADMIN'){
-        navigate('/updateAdmin');
+        // Use `navigate` from `react-router-dom` if needed
       }
     } else {
-        navigate('/login');
+      // Use `navigate` from `react-router-dom` if needed
     }
   }
-  
-
-  // const DrawerList = (
-  //   <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-  //     <List>
-  //       {['Home', 'Admin Registration', 'Snake Catcher Registration', 'Snake Identify'].map((text, index) => (
-  //         <ListItem key={text} disablePadding>
-  //           <ListItemButton component={Link} to={`/${text.toLowerCase().replace(' ', '-')}`}>
-  //             <ListItemIcon>
-  //               {index === 2 ? <InboxIcon /> : <MailIcon />}
-  //             </ListItemIcon>
-  //             <ListItemText primary={text} />
-  //           </ListItemButton>
-  //         </ListItem>
-  //       ))}
-  //     </List>
-  //   </Box>
-  // );
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
@@ -81,19 +62,30 @@ export default function TemporaryDrawer() {
         ].map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton component={Link} to={item.link}>
-              <ListItemIcon>{item.icon}</ListItemIcon> {/* Add the icon here */}
+              <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+      <Divider />
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleUpdateData}>
+            <ListItemIcon><EditIcon /></ListItemIcon>
+            <ListItemText primary="Update Data" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleLogout}>
+            <ListItemIcon><LogoutIcon /></ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItemButton>
+        </ListItem>
+      </List>
     </Box>
   );
   
-  
-
-
-
 
   return (
     <div>
@@ -111,44 +103,43 @@ export default function TemporaryDrawer() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-  Snake App
-          </Typography>
-          {user ? (
-            <div>
-              <IconButton
-                size="large"
-                color="inherit"
-                aria-label="account"
-                onClick={(e) => setOpen(e.currentTarget)}
-              >
-                <AccountCircle />
-                
-              <Typography variant="body1" sx={{ mr: 2 }}>
+              Snake App
+            </Typography>
+            {user ? (
+              <div>
+                <IconButton
+                  size="large"
+                  color="inherit"
+                  aria-label="account"
+                  onClick={(e) => setOpen(e.currentTarget)}
+                >
+                  <AccountCircle sx={{mr:2}}/> 
+                  <Typography variant="body1" sx={{ mr: 2 }}>
                 {user.userName}
-              </Typography>
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={open}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(open)}
-                onClose={() => setOpen(null)}
-              >
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                <MenuItem onClick={handleUpdateData}>Update Data</MenuItem>
-              </Menu>
-            </div>
-          ) : (
-            <Button color="inherit" component={Link} to="/login">Login</Button>
-          )}
-
+                </Typography>
+                </IconButton>
+                
+                {/*<Menu
+                  id="menu-appbar"
+                  anchorEl={open}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(open)}
+                  onClose={() => setOpen(null)}
+                >
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem onClick={handleUpdateData}>Update Data</MenuItem>
+                    </Menu>*/}
+              </div>
+            ) : (
+              <Button color="inherit" component={Link} to="/login">Login</Button>
+            )}
           </Toolbar>
         </AppBar>
       </Box>

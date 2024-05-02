@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 const Footer = () => {
   return (
     <Box sx={{
-      position: 'fixed',
+      position: 'relative',
       bottom: 0,
       left: 0,
       width: '100%',
