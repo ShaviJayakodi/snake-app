@@ -7,19 +7,21 @@ function SnakeIdentification() {
   const [formData, setFormData] = useState({
     image: null,
   });
+  const [previewImage, setPreviewImage] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setFormData({
         ...formData,
-        image: URL.createObjectURL(file)
+        image: file
       });
+      setPreviewImage(URL.createObjectURL(file));
     }
   };
-  
-  
 
+  
+  
   const handleCapture = async () => {
     if ("mediaDevices" in navigator) {
       try {
@@ -28,10 +30,16 @@ function SnakeIdentification() {
         const imageCapture = new ImageCapture(mediaStreamTrack);
   
         const photo = await imageCapture.takePhoto();
+  
+        // Create a Blob object from the captured photo data
+        const blob = new Blob([photo], { type: 'image/jpeg' });
+  
         setFormData({
           ...formData,
-          image: URL.createObjectURL(photo)
+          image: blob
         });
+  
+        setPreviewImage(URL.createObjectURL(blob)); // Set the preview image URL
   
         mediaStreamTrack.stop(); // Stop the camera stream
       } catch (error) {
@@ -51,10 +59,13 @@ function SnakeIdentification() {
       });
     }
   };
+  
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!formData.image) {
       Swal.fire({
         title: 'Error!',
@@ -63,20 +74,10 @@ function SnakeIdentification() {
       });
       return;
     }
-    const image = await loadImageBase64(formData.image);
-
+  
     try {
-      const loadImageBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = (error) => reject(error);
-          reader.readAsDataURL(file instanceof Blob ? file : file[0]);
-        });
-      };
-
-      
-      
+      const image = await loadImageBase64(formData.image);
+  
       axios({
         method: "POST",
         url: "https://detect.roboflow.com/snake-classification/2",
@@ -90,11 +91,12 @@ function SnakeIdentification() {
       })
       .then(function(response) {
         console.log(response.data);
+        console.log(response.data.predictions[0].class);
       })
       .catch(function(error) {
         console.log(error.message);
       });
-
+  
       // Optionally, you can reset the form data after successful submission
       setFormData({
         image: null
@@ -108,15 +110,16 @@ function SnakeIdentification() {
       });
     }
   };
-
+  
   const loadImageBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file instanceof Blob ? file : file[0]);
     });
-  }
+  };
+
 
   return (
     <Container maxWidth="sm" style={{ background: '#C6EBC5', padding: '15px', marginTop: '25px', borderRadius: '15px', textAlign: 'center', justifyContent: 'center', minHeight: '65vh' }}>
@@ -145,8 +148,8 @@ function SnakeIdentification() {
           Capture Photo
         </Button>
         <Grid item xs={12}>
-          {formData.image && (
-            <img src={formData.image} alt="Preview" style={{ maxWidth: '100%', marginTop: '10px' }} />
+          {previewImage && (
+            <img src={previewImage} alt="Preview" style={{ maxWidth: '100%', marginTop: '10px' }} />
           )}
         </Grid>
         <Button type="submit" variant="contained" color="primary" fullWidth sx={{ padding: 1, marginTop: 2 }}>

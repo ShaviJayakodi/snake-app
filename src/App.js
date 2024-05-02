@@ -12,6 +12,8 @@ import Footer from './components/Footer';
 import SearchSnakeCatcher from './components/SearchSnakeCatcher';
 import UpdateSnakeCatcher from './components/UpdateSnakeCatcher';
 import UpdateAdmin from './components/UpdateAdmin';
+import SnakeCatchersList from './components/SnakeCatchersList';
+
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
         <Route path="/changePassword" element={<ChangePassword />} />
         <Route path="/updateSnakeCatcher" element={<UpdateSnakeCatcher />} />
         <Route path="/updateAdmin" element={<UpdateAdmin />} />
+        <Route path="/snakeCatchersList" element={<SnakeCatchersList />} />
 
       </Routes>
       <Footer />
