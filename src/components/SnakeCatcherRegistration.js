@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Typography, Container, Grid, MenuItem, Divider } from '@mui/material';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import TemporaryDrawer from './TemporaryDrawer';
 
 function Registration() {
   const [formData, setFormData] = useState({
@@ -75,7 +76,9 @@ function Registration() {
     });
   };
 
-  return (
+  return ( 
+  <div>
+    <TemporaryDrawer/>
     <Container maxWidth="sm" style ={{background:'#C6EBC5', padding:'15px', marginTop:'25px' , borderRadius:'15px' ,  textAlign: 'center', justifyContent: 'center',
     minHeight: '65vh' }}>
       <Typography variant="h4" align="center" gutterBottom>
@@ -202,6 +205,7 @@ function Registration() {
          </Button>
       </form>
     </Container>
+    </div>
   );
 }
 

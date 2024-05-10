@@ -10,8 +10,8 @@ import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import { AccountCircle, Menu as MenuIcon, Mail as MailIcon, MoveToInbox as InboxIcon, Logout as LogoutIcon } from '@mui/icons-material';
-import { MenuItem, Toolbar, Menu, AppBar, Divider } from '@mui/material';
+import { AccountCircle, Menu as MenuIcon, Mail as MailIcon, Logout as LogoutIcon } from '@mui/icons-material';
+import { Toolbar, AppBar, Divider } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import RememberMeIcon from '@mui/icons-material/RememberMe';
@@ -41,15 +41,15 @@ export default function TemporaryDrawer() {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const logedUserType = JSON.parse(storedUser).userType;
-      if(logedUserType==='SNAKE_CATCHER'){
+      if (logedUserType === 'SNAKE_CATCHER') {
         // Use `navigate` from `react-router-dom` if needed
-      } else if (logedUserType==='ADMIN'){
+      } else if (logedUserType === 'ADMIN') {
         // Use `navigate` from `react-router-dom` if needed
       }
     } else {
       // Use `navigate` from `react-router-dom` if needed
     }
-  }
+  };
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
@@ -58,7 +58,9 @@ export default function TemporaryDrawer() {
           { text: 'Home', link: '/home', icon: <HomeIcon /> },
           { text: 'Admin Registration', link: '/adminRegistration', icon: <AdminPanelSettingsIcon /> },
           { text: 'Snake Catcher Registration', link: '/snakeCatcherRegistration', icon: <MailIcon /> },
-          { text: 'Snake Identify', link: '/snakeIdentification', icon: <RememberMeIcon /> }
+          { text: 'Snake Identify', link: '/snakeIdentification', icon: <RememberMeIcon /> },
+          { text: 'Snake Catcher List', link: '/snakeCatchersList', icon: <RememberMeIcon /> },
+          { text: 'Search Snake Catcher', link: '/searchSnakeCatcher', icon: <RememberMeIcon /> },
         ].map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton component={Link} to={item.link}>
@@ -67,6 +69,22 @@ export default function TemporaryDrawer() {
             </ListItemButton>
           </ListItem>
         ))}
+        {((user && user.userType === 'ADMIN') || (user && user.userType === 'SUPER_ADMIN')) && (
+          <ListItem disablePadding>
+            <ListItemButton component={Link} to="/adminSettings">
+              <ListItemIcon><AdminPanelSettingsIcon /></ListItemIcon>
+              <ListItemText primary="Admin Settings" />
+            </ListItemButton>
+          </ListItem>
+        )}
+        {user && user.userType === 'SNAKE_CATCHER' && (
+          <ListItem disablePadding>
+            <ListItemButton component={Link} to="/snakeCatcherSettings">
+              <ListItemIcon><MailIcon /></ListItemIcon>
+              <ListItemText primary="Snake Catcher Settings" />
+            </ListItemButton>
+          </ListItem>
+        )}
       </List>
       <Divider />
       <List>
@@ -85,7 +103,6 @@ export default function TemporaryDrawer() {
       </List>
     </Box>
   );
-  
 
   return (
     <div>
@@ -113,29 +130,11 @@ export default function TemporaryDrawer() {
                   aria-label="account"
                   onClick={(e) => setOpen(e.currentTarget)}
                 >
-                  <AccountCircle sx={{mr:2}}/> 
+                  <AccountCircle sx={{ mr: 2 }} />
                   <Typography variant="body1" sx={{ mr: 2 }}>
-                {user.userName}
-                </Typography>
+                    {user.userName}
+                  </Typography>
                 </IconButton>
-                
-                {/*<Menu
-                  id="menu-appbar"
-                  anchorEl={open}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(open)}
-                  onClose={() => setOpen(null)}
-                >
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                  <MenuItem onClick={handleUpdateData}>Update Data</MenuItem>
-                    </Menu>*/}
               </div>
             ) : (
               <Button color="inherit" component={Link} to="/login">Login</Button>

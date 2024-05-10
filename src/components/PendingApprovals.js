@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import MainCard from '../ui-component/cards/MainCard';
+import TemporaryDrawer from './TemporaryDrawer';
 
 const PendingApprovals = () => {
   const [requests, setRequests] = useState([]); // Use an array to store the fetched requests
@@ -91,6 +92,8 @@ const handleReject = (snakeCatcherId, status) => {
 
 
   return (
+    <div>
+      <TemporaryDrawer/>
     <Grid container spacing={2}>
       {requests.map((request) => (
         <Grid item key={request.snakeCatcherId} xs={12} sm={12} md={12}>
@@ -122,6 +125,8 @@ const handleReject = (snakeCatcherId, status) => {
         </Grid>
       ))}
     </Grid>
+    
+    </div>
   );
 };
 export default PendingApprovals;

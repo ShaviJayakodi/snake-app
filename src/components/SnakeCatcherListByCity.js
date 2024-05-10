@@ -60,13 +60,7 @@ const SearchSnakeCatcher = () => {
   return (
     <div>
     <TemporaryDrawer/>
-    <Typography variant='body1' align='center' paragraph>
-        <h2>
-          Search Snake Catcher
-        </h2>
-      </Typography>
-      <FormControl fullWidth margin='dense'>
-        
+      <FormControl fullWidth>
         <InputLabel id="city-label">Select City</InputLabel>
         <Select
           labelId="city-label"
@@ -74,7 +68,6 @@ const SearchSnakeCatcher = () => {
           value={selectedCity}
           label="Select City"
           onChange={handleCityChange}
-          margin='dense'
         >
           {cities.map((city) => (
             <MenuItem key={city} value={city}>

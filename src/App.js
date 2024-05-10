@@ -14,6 +14,7 @@ import UpdateSnakeCatcher from './components/UpdateSnakeCatcher';
 import UpdateAdmin from './components/UpdateAdmin';
 import SnakeCatchersList from './components/SnakeCatchersList';
 import SnakeDataForm from './components/SnakeDataForm';
+import SnakeCatcherListByCity from './components/SnakeCatcherListByCity'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/updateAdmin" element={<UpdateAdmin />} />
         <Route path="/snakeCatchersList" element={<SnakeCatchersList />} />
         <Route path="/snakeDataForm" element={<SnakeDataForm />} />
+        <Route path="/snakeCatcherListByCity" element={<SnakeCatcherListByCity />} />
 
       </Routes>
       <Footer />

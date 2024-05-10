@@ -69,7 +69,7 @@ function SnakeIdentification() {
                           - Walking or running is not advisable.<br/>
                           - In case of a bite on the hand, bandage the arm and put it in a sling from the shoulder.<br/>
                       </p>`
-              venomousButton = `<br/><button class="swal2-confirm swal2-styled" onclick="window.location.href='/your-venomous-page'">Find a Snake Catcher</button>`;
+              venomousButton = `<br/><button class="swal2-confirm swal2-styled" onclick="window.location.href='/searchSnakeCatcher'">Find a Snake Catcher</button>`;
             } else{
               treat = `<p>
                           <h3>If Bitten, Please Do:</h3>

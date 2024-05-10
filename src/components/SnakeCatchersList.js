@@ -4,6 +4,7 @@ import MainCard from '../ui-component/cards/MainCard';
 import SnakeCatcherDetailsPopup from './SnakeCatcherDetailsPopup';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import TemporaryDrawer from './TemporaryDrawer';
 
 function SnakeCatchersList() {
   const [snakeCatchers, setSnakeCatchers] = useState([]);
@@ -42,7 +43,11 @@ function SnakeCatchersList() {
   };
 
   return (
+   <div>
+     <TemporaryDrawer/>
     <MainCard>
+     
+   
      <Typography variant="h4" align="center" gutterBottom>
         Snake Catcher List
       </Typography>
@@ -83,6 +88,7 @@ function SnakeCatchersList() {
         />
       )}
     </MainCard>
+    </div>
   );
 }
 
